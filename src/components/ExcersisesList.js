@@ -13,9 +13,10 @@ const ExcersisesList = ()=>{
     return(
         <div className="container p-3">
             <ul className="list-group">
-               {excercises.map(({_id,description})=>{
+               {excercises.map(({_id,description,username})=>{
                    return(
-                    <li key={_id} className="list-group-item"><Link className="btn btn-default" to={`excersices/${_id}`}>{description}</Link></li>
+                    <li key={_id} className="list-group-item"><Link className="btn btn-default text-left" to={`excersices/${_id}`}>
+                    <b>{description}</b><br/><small>{username}</small></Link></li>
                    )
                })}
             </ul>

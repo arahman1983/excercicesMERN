@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const ExcersisesCreate = (props)=>{
+const ExcersisesEdit = (props)=>{
     const [users,setUsers] = useState([]);
     const [ExcerciseName, setExcerciseName] = useState("");
     const [ExcerciseUser, setExcerciseUser] = useState("");
@@ -105,4 +105,4 @@ const ExcersisesCreate = (props)=>{
     )
 }
 
-export default ExcersisesCreate
+export default ExcersisesEdit

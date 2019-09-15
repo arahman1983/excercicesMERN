@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ExcerciseForm = ({ users }) => {
   const [ExcerciseName, setExcerciseName] = useState("");
   const [ExcerciseUser, setExcerciseUser] = useState("");
-  const [ExcerciseDate, setExcerciseDate] = useState("");
+  const [ExcerciseDate, setExcerciseDate] = useState(new Date());
   const [ExcerciseDur, setExcerciseDur] = useState(0);
 
   return (
@@ -46,7 +46,7 @@ const ExcerciseForm = ({ users }) => {
             placeholder="Add Duration"
             min="0"
             value={ExcerciseDur}
-            onChange={e => setExcerciseDur(e.target.value)}
+            onChange={e => setExcerciseDur(Number(e.target.value))}
           />
         </div>
       </div>
@@ -56,7 +56,7 @@ const ExcerciseForm = ({ users }) => {
             type="date"
             className="form-control"
             value={ExcerciseDate}
-            onChange={e => setExcerciseDate(Number(e.target.value))}
+            onChange={e => setExcerciseDate(Date(e.target.value))}
           />
         </div>
       </div>

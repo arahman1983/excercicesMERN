@@ -4,6 +4,7 @@ import NavBarComp from "./components/NavBar"
 import ExcersisesList from "./components/ExcersisesList"
 import ExcersisesDetails from "./components/ExcersisesDetails"
 import ExcersisesCreate from "./components/ExcersisesCreate"
+import ExcersisesEdit from "./components/ExcersisesEdit"
 
 
 
@@ -14,6 +15,7 @@ function App() {
     <Route path="/" exact component={ExcersisesList} />
     <Route path="/excersices/:id" component={ExcersisesDetails} />
     <Route path="/create" component={ExcersisesCreate} />
+    <Route path="/edit/:id" component={ExcersisesEdit} />
     </Router>
   );
 }
