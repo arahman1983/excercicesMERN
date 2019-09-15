@@ -4,12 +4,26 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const ExcersisesEdit = (props)=>{
+    const excerciseId = props.match.params.id
+    
     const [users,setUsers] = useState([]);
     const [ExcerciseName, setExcerciseName] = useState("");
     const [ExcerciseUser, setExcerciseUser] = useState("");
     const [ExcerciseDate, setExcerciseDate] = useState(new Date());
     const [ExcerciseDur, setExcerciseDur] = useState(0);
     
+    useEffect(() => {
+      fetch(`http://localhost:5000/excercises/${excerciseId}`,{method:'get'})
+      .then(res=>res.json())
+      .then(data => {
+        console.log(Date(data.date))
+        setExcerciseName(data.description);
+        setExcerciseUser(data.username);
+        setExcerciseDate(new Date(data.date));
+        setExcerciseDur(Number(data.duration));
+      })
+      }, [excerciseId])
+
     useEffect(() => {
         fetch("http://localhost:5000/users/")
         .then(res=>res.json())
@@ -24,9 +38,9 @@ const ExcersisesEdit = (props)=>{
             duration:ExcerciseDur,
             date:ExcerciseDate
         }
-        fetch("http://localhost:5000/excercises/add",
+        fetch(`http://localhost:5000/excercises/update/${excerciseId}`,
         {
-            method:'post', 
+            method:'put', 
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,13 +74,17 @@ const ExcersisesEdit = (props)=>{
             onChange={e => {
               setExcerciseUser(e.target.value);
             }}>
-            <option value="">Select User</option>
-            {users.map(user => {
-              return (
-                <option key={user._id} value={user.username}>
-                  {user.username}
-                </option>
-              );
+            <option value={ExcerciseUser}>{ExcerciseUser}</option>
+            {
+              users.map(user => {
+                if(user.username !== ExcerciseUser ){
+                  return (
+                    <option key={user._id} value={user.username}>
+                      {user.username}
+                    </option>
+                  );
+                }
+              return user.username
             })}
           </select>
         </div>
@@ -93,7 +111,7 @@ const ExcersisesEdit = (props)=>{
       </div>    
       <div className="row">
         <div className="col-md-6 row">
-          <button className="btn btn-info mx-auto w-25">Add </button>
+          <button className="btn btn-info mx-auto w-25">Edit </button>
           <Link className="btn btn-light mx-auto w-25" to="/">
             cancel
           </Link>

@@ -5,6 +5,9 @@ import ExcersisesList from "./components/ExcersisesList"
 import ExcersisesDetails from "./components/ExcersisesDetails"
 import ExcersisesCreate from "./components/ExcersisesCreate"
 import ExcersisesEdit from "./components/ExcersisesEdit"
+import UsersAdd from "./components/UsersAdd"
+
+
 
 
 
@@ -16,6 +19,7 @@ function App() {
     <Route path="/excersices/:id" component={ExcersisesDetails} />
     <Route path="/create" component={ExcersisesCreate} />
     <Route path="/edit/:id" component={ExcersisesEdit} />
+    <Route path="/add" component={UsersAdd} />
     </Router>
   );
 }

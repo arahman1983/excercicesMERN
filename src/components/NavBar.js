@@ -21,7 +21,7 @@ const NavBarComp = () => {
                 Create Excercise{" "}
               </Link>
               </li><li className="nav-item">
-              <Link className="nav-link" to="/users/add">
+              <Link className="nav-link" to="/add">
                 Add user
               </Link>
             </li>
