@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
-const UsersAdd = () => {
+const UsersAdd = (props) => {
   const [users, setUsers] = useState([]);
   const [username, setNewUser] = useState("");
 
@@ -15,12 +15,8 @@ const UsersAdd = () => {
 
   const onFormSubmit = e => {
     e.preventDefault();
-    
-    const userValid = users.filter((user)=>{
-      if(user.username === username){
-        return user
-      }
-    })
+
+    const userValid = users.filter((user)=> user.username === username && user )
 
     if(userValid.length > 0 || username === ""){
       document.getElementById("errorMes").style.display = "block";
@@ -29,7 +25,7 @@ const UsersAdd = () => {
       const newUser = {
         username : username
       };
-      console.log(newUser)
+
       fetch("http://localhost:5000/users/add", {
         method: "post",
         mode: "cors",
@@ -38,10 +34,10 @@ const UsersAdd = () => {
         },
         body: JSON.stringify(newUser)
       })
-        .then(res => console.log(res))
+        .then(() => console.log("user added succesfuly"))
         .catch(err => console.log(err));
-      window.location.href = "/";
-
+     //  window.location.href = "/";
+      props.history.push('/')
     }
     
   };
