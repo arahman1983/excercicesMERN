@@ -23,7 +23,7 @@ const UsersAdd = (props) => {
       return false
     }else{
       const newUser = {
-        username : username
+        username
       };
 
       fetch("http://localhost:5000/users/add", {

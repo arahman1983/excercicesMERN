@@ -76,16 +76,9 @@ const ExcersisesEdit = (props)=>{
             }}>
             <option value={ExcerciseUser}>{ExcerciseUser}</option>
             {
-              users.map(user => {
-                if(user.username !== ExcerciseUser ){
-                  return (
-                    <option key={user._id} value={user.username}>
-                      {user.username}
-                    </option>
-                  );
-                }
-              return user.username
-            })}
+              users.map(({username, _id}) => 
+                username !== ExcerciseUser && <option key={_id} value={username}>{username}</option>
+                )}
           </select>
         </div>
       </div>
